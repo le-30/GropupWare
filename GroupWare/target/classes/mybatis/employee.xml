@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="employee.model.Employee">
+	
+	<select id="getAllEmployee" resultType="employee.model.EmployeeBean">
+		select * from employee
+	</select>
+	
+	<insert id="insertEmployee">
+		insert into employee(emp_no,emp_nm,dept_cd,position_cd,hire_date,gender,birth,email,pw)
+		values(#{emp_no},#{emp_nm},#{dept_cd},#{position_cd},#{hire_date},#{gender},#{birth},#{email},#{pw})
+	</insert>
+	
+	<select id="getEmployeeInfo" resultType="employee.model.EmployeeBean">
+		select
+		       e.emp_no
+		      ,e.emp_nm
+		      ,e.pw
+		      ,e.dept_cd
+		      ,(select d.dept_nm from department d where d.dept_cd = e.dept_cd) as dept_nm
+		      ,e.position_cd
+		      ,(select c.cmm_nm from cmm_code c where c.cmm_class = 'POSITION_CD' and c.cmm_cd = e.position_cd) as position_nm
+		      from employee e
+		      where e.emp_no = #{emp_no}
+		      and e.pw = #{pw}
+	</select>
+</mapper>
