@@ -7,6 +7,13 @@
 	
 	<select id="getAllEmployee" resultType="employee.model.EmployeeBean">
 		select * from employee
+		<if test="whatColumn == 'emp_nm'">
+		where emp_nm like #{keyword}
+		</if>
+		<if test="whatColumn == 'emp_no'">
+		where emp_no like #{keyword}
+		</if>
+		order by hire_date
 	</select>
 	
 	<insert id="insertEmployee">

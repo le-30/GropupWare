@@ -1,6 +1,7 @@
 package employee.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,9 @@ public class EmployeeDao {
 
 	private final String namespace="employee.model.Employee";
 	
-	public List<EmployeeBean> getAllEmployee() {
+	public List<EmployeeBean> getAllEmployee(Map<String,String> map) {
 		
-		List<EmployeeBean> lists = sqlSessionTemplate.selectList(namespace+".getAllEmployee");
+		List<EmployeeBean> lists = sqlSessionTemplate.selectList(namespace+".getAllEmployee",map);
 		
 		return lists;
 	}

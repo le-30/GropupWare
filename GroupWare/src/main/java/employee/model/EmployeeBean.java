@@ -2,19 +2,28 @@ package employee.model;
 
 import java.sql.Date;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 
 public class EmployeeBean {
-		
+	
+	@NotEmpty(message="사원번호를 입력하세요.")
 	private String emp_no; 
+	@NotEmpty(message="이름 입력하세요.")
 	private String emp_nm;
 	private String emp_status;
+	@NotEmpty(message="부서를 선택하세요.")
 	private String dept_cd;
+	@NotEmpty(message="직위를 선택하세요.")
 	private String position_cd;
 	private Date hire_date;
 	private Date retire_date;
+	@NotEmpty(message="성별을 선택하세요.")
 	private String gender;
 	private Date birth;
+	@NotEmpty(message="이메일을 입력하세요.")
 	private String email;
+	@NotEmpty(message="비밀번호를 입력하세요.")
 	private String pw;
 	
 	private String dept_nm; 

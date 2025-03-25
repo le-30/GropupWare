@@ -15,7 +15,12 @@ public class RouterController {
 		System.out.println("page:"+page);
 		if ("emp".equals(page)) {
 		    return "redirect:/lsh_list.erp";
-		} else {
+		}else if("dept".equals(page)){
+			return "redirect:/dept_list.erp";
+		}else if("cmmCode".equals(page)){
+			return "redirect:/cmm_list.erp";
+		}
+		else {
 		    return gotoPage;
 		}
 	}

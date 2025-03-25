@@ -34,11 +34,11 @@ public class EmpInsertController {
 		System.out.println("입사일:"+empBean.getHire_date());
 		
 		ModelAndView mav = new ModelAndView();
-//		if(result.hasErrors()) {
-//			
-//			mav.setViewName(getPage);
-//			return mav;
-//		}
+		if(result.hasErrors()) {
+			
+			mav.setViewName(getPage);
+			return mav;
+		}
 		
 		int cnt = empdao.insertEmployee(empBean);
 		mav.setViewName(gotoPage);

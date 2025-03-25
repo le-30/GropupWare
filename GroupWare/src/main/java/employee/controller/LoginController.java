@@ -40,6 +40,7 @@ public class LoginController {
 		EmployeeBean empBean= empdao.getEmployeeInfo(emp_no,pw);
 		
 		if(empBean != null && empBean.getEmp_no().equals(emp_no) && empBean.getPw().equals(pw)) {
+			
 			session.setAttribute("emp_no", emp_no);
 			session.setAttribute("emp_nm",empBean.getEmp_nm());
 			session.setAttribute("dept_cd", empBean.getDept_cd());

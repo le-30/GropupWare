@@ -56,9 +56,8 @@
 </style>
 
 <header id="header">
-    <div class="header-left">
-        <span class="tab active" data-target="received">받은 메신저</span>
-        <span class="tab" data-target="sent">보낸 메신저</span>
+    <div class="header-left" id="headerTabs">
+       
     </div>
     <button id="headerBtn" onclick="openModal(currentModal)">
     등록

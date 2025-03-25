@@ -2,8 +2,42 @@
     pageEncoding="UTF-8"%>
     <%@include file="./../common/common.jsp" %>
 
+
+<form action="lsh_list.erp" method="get" id="empSearchForm">
+<select name = whatColumn>
+	<option value="">전체 선택</option>
+	<option value="emp_no">사원번호</option>
+	<option value="emp_nm">사원이름</option>
+</select>
+<input type="text" name="keyword">
+<input type="button" value="검색" id="searchBtn">
+</form>
+
+<script>
+  $(document).ready(function(){
+	  
+	$('#searchBtn').on('click',function(){
+		
+		const searchData = $('#empSearchForm').serialize();
+		
+		$.ajax({
+			url : "lsh_list.erp",
+			method: "GET",
+			data: searchData,
+			success: function(html){
+				$('#empTableBody').html(html);
+			},
+			error: function(){
+				alert("검색실패");
+			}
+		});
+	});
+  });
+
+</script>
 <table border="1">
   
+ 	<thead>
     <tr>
       <th>사번</th>
       <th>이름</th>
@@ -15,8 +49,9 @@
       <th>생년월일</th>
       <th>이메일</th>
     </tr>
+ 	</thead>
   
-  
+  	<tbody id="empTableBody">
     <c:forEach var="emp" items="${lists}">
       <tr>
         <td>${emp.emp_no}</td>
@@ -30,9 +65,7 @@
         <td>${emp.email}</td>
       </tr>
     </c:forEach>
-  <tr>
-  	<td colspan="9">
-  	<a href="lsh_insert.erp">추가하기</a>
-  	</td>
-  </tr>
+  	</tbody>
+ 
+ 
 </table>

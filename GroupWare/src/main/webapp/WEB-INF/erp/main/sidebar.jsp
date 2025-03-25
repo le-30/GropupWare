@@ -87,32 +87,36 @@
     </div>
 
     <div id="sideMiddle">
-    <div class="sideTr" data-action="page" data-target="msg" onclick="handleSidebar(this)">
+    <div class="sideTr" data-action="page" data-target="msg">
         <i class="fas fa-paper-plane sideIcon"></i>메신저
     </div>
-    <div class="sideTr" data-action="page" data-target="alarm" onclick="handleSidebar(this)">
+    <div class="sideTr" data-action="page" data-target="alarm">
         <i class="fas fa-bell sideIcon"></i>새로운 소식
     </div>
-    <div class="sideTr" data-action="page" data-target="notice" onclick="handleSidebar(this)">
+    <div class="sideTr" data-action="page" data-target="notice">
         <i class="fas fa-flag sideIcon"></i>공지사항
     </div>
-    <div class="sideTr" data-action="page" data-target="emp" onclick="handleSidebar(this)">
+    <div class="sideTr" data-action="page" data-target="emp" >
         <i class="fas fa-users sideIcon"></i>구성원
     </div>
-    <div class="sideTr" data-action="page" data-target="calender" onclick="handleSidebar(this)">
+    <div class="sideTr" data-action="page" data-target="calender">
         <i class="fas fa-calendar-check sideIcon"></i>캘린더
     </div>
-    <div class="sideTr" data-action="page" data-target="comment" onclick="handleSidebar(this)">
+    <div class="sideTr" data-action="page" data-target="comment">
         <i class="fas fa-clock sideIcon"></i>출퇴근
     </div>
-    <div class="sideTr" data-action="page" data-target="vacation" onclick="handleSidebar(this)">
+    <div class="sideTr" data-action="page" data-target="vacation">
         <i class="fas fa-plane sideIcon"></i>휴가
     </div>
-    <div class="sideTr" data-action="page" data-target="appr" onclick="handleSidebar(this)">
+    <div class="sideTr" data-action="page" data-target="appr">
         <i class="fas fa-pen-nib sideIcon"></i>전자결재
     </div>
-    <div class="sideTr" data-action="page" data-target="pay" onclick="handleSidebar(this)">
+    <div class="sideTr" data-action="page" data-target="pay">
         <i class="fas fa-dollar-sign sideIcon"></i>급여
+    </div>
+    <div class="sideTr" data-action="page" data-target="admin">
+        <i class="fas fa-dollar-sign sideIcon"></i>관리자페이지
+        
     </div>
 </div>
 

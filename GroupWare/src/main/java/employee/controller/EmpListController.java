@@ -1,12 +1,16 @@
 package employee.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import employee.model.EmployeeBean;
@@ -22,11 +26,14 @@ public class EmpListController {
 		@Autowired
 		EmployeeDao empdao;
 		
-		@RequestMapping(command)
-		public ModelAndView doAction() {
+		@RequestMapping(value = command, method = RequestMethod.GET)
+		public ModelAndView doAction(@RequestParam(value="keyword",required= false)String keyword,
+									 @RequestParam(value ="whatColumn", required =false)String whatColumn) {
 			ModelAndView mav = new ModelAndView();
-			
-			List<EmployeeBean> lists = empdao.getAllEmployee();
+			Map<String,String> map = new HashMap<String,String>();
+			map.put("whatColumn",whatColumn);
+			map.put("keyword", "%"+keyword+"%");
+			List<EmployeeBean> lists = empdao.getAllEmployee(map);
 			
 			mav.addObject("lists",lists);
 			mav.setViewName(gotoPage);
