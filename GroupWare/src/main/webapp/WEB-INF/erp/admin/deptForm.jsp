@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@include file="./../common/common.jsp" %>
-    
-deptForm.jsp<br>
 
 <form action="dept_list.erp" method="post">
 	<table border="1">

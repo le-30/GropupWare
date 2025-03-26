@@ -3,36 +3,38 @@
     <%@include file="./../common/common.jsp" %>
 
 
-<form action="lsh_list.erp" method="get" id="empSearchForm">
-<select name = whatColumn>
-	<option value="">전체 선택</option>
-	<option value="emp_no">사원번호</option>
-	<option value="emp_nm">사원이름</option>
-</select>
-<input type="text" name="keyword">
-<input type="button" value="검색" id="searchBtn">
+<form id="empSearchForm">
+  <select name="whatColumn">
+    <option value="">전체 선택</option>
+    <option value="emp_no">사원번호</option>
+    <option value="emp_nm">사원이름</option>
+  </select>
+  <input type="text" name="keyword">
+  <button type="submit">검색</button>
 </form>
 
+
 <script>
-  $(document).ready(function(){
-	  
-	$('#searchBtn').on('click',function(){
-		
-		const searchData = $('#empSearchForm').serialize();
-		
-		$.ajax({
-			url : "lsh_list.erp",
-			method: "GET",
-			data: searchData,
-			success: function(html){
-				$('#empTableBody').html(html);
-			},
-			error: function(){
-				alert("검색실패");
-			}
-		});
-	});
+ $(document).ready(function () {
+  $('#empSearchForm').on('submit', function (e) {
+    e.preventDefault();
+
+    const searchData = $(this).serialize();
+
+    $.ajax({
+      url: 'lsh_list.erp', 
+      method: 'GET',
+      data: searchData,
+      success: function (html) {
+        $('.main-content').html(html); 
+      },
+      error: function () {
+        alert('검색 실패');
+      }
+    });
   });
+});
+
 
 </script>
 <table border="1">

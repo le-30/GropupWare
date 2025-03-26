@@ -24,6 +24,13 @@
 	      tabs: [
 	        { label: "공통코드 관리", target: "cmmCode" }
 	      ]
+	    },
+	    authInfo: {
+	      button: "권한등록",
+	      modal: "authInfo_insert",
+	      tabs: [
+	        { label: "권한부여 관리", target: "authInfo" }
+	      ]
 	    }
 	   
 	   };
@@ -32,7 +39,8 @@
 		window.modalPages = window.modalPages || {
 				  emp_insert: 'lsh_insert.erp',
 				  dept_insert: 'dept_insert.erp',
-				  cmmCode_insert: 'cmmCode_insert.erp'
+				  cmmCode_insert: 'cmmCode_insert.erp',
+				  authInfo_insert: 'authInfo_insert.erp'
 				};
 
 

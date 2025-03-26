@@ -12,4 +12,21 @@
 	<select id="getAllCmmCode" resultType = "admin.model.CmmCodeBean">
 		select * from cmm_code
 	</select>
+	
+	<select id="getAllAuthInfo" resultType="admin.model.AuthInfoBean">
+		select * from auth_info
+	</select>
+	
+	<select id="getAuthByEmpNo" resultType="admin.model.EmployeeAuthBean">
+		select * from employee_auth where emp_no = #{emp_no}
+	</select>
+	
+	<insert id="insertEmployeeAuth">
+		insert into employee_auth(auth_cd,emp_no)
+		values(#{auth_cd},#{emp_no})
+	</insert>
+	
+	<update id="updateEmployeeAuth">
+		update employee_auth set auth_cd = #{auth_cd} where emp_no = #{emp_no}
+	</update>
 </mapper>

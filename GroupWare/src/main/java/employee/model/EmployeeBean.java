@@ -28,9 +28,17 @@ public class EmployeeBean {
 	
 	private String dept_nm; 
     private String position_nm;
+    private String currentAuth;
 	
 	
 	
+	
+	public String getCurrentAuth() {
+		return currentAuth;
+	}
+	public void setCurrentAuth(String currentAuth) {
+		this.currentAuth = currentAuth;
+	}
 	
 	public String getDept_nm() {
 		return dept_nm;

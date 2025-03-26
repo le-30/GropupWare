@@ -40,5 +40,12 @@ public class EmployeeDao {
 		return empBean;
 	}
 
+	public List<EmployeeBean> getAllEmployeeJoinAuth() {
+		
+		List<EmployeeBean> empList = sqlSessionTemplate.selectList(namespace+".getAllEmployeeAuth");
+		
+		return empList;
+	}
+
 	
 }

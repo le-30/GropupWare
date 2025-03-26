@@ -34,4 +34,21 @@
 		      where e.emp_no = #{emp_no}
 		      and e.pw = #{pw}
 	</select>
+	
+	<select id="getAllEmployeeAuth" resultType="employee.model.EmployeeBean">
+		select
+		       e.emp_no
+		      ,e.emp_nm
+		      ,e.pw
+		      ,e.dept_cd
+		      ,(select d.dept_nm from department d where d.dept_cd = e.dept_cd) as dept_nm
+		      ,e.position_cd
+		      ,(select c.cmm_nm from cmm_code c where c.cmm_class = 'POSITION_CD' and c.cmm_cd = e.position_cd) as position_nm
+		      ,NVL(a.auth_cd,'없음') as currentAuth
+		      from employee e
+		      left join
+		      employee_auth a on e.emp_no = a.emp_no
+		      order by e.emp_no
+	
+	</select>
 </mapper>

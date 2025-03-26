@@ -66,7 +66,6 @@ window.tabSets = window.tabSets || {
 					 
 					 const isActive = index === 0 ? "active" :"";
 					 const html = '<span class="tab '+isActive+ '"data-target="'+tab.target+'">'+tab.label+'</span>';
-					 console.log($("#headerTabs").html());
 					 
 					 $headerTabs.append(html);
 				 });
