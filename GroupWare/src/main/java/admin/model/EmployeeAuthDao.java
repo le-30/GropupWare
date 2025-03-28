@@ -14,9 +14,12 @@ public class EmployeeAuthDao {
 		@Autowired
 		SqlSessionTemplate sqlSessionTemplate;
 
-		public String getAuthByEmpNo(String emp_no) {
+		public String getAuthByEmpNo(String emp_no,String auth_cd) {
 			
-			String getAuthByEmpNo = sqlSessionTemplate.selectOne(namespace+".getAuthByEmpNo",emp_no);
+			EmployeeAuthBean empAuthBean = new EmployeeAuthBean();
+			empAuthBean.setAuth_cd(auth_cd);
+			empAuthBean.setEmp_no(emp_no);
+			String getAuthByEmpNo = sqlSessionTemplate.selectOne(namespace+".getAuthByEmpNo",empAuthBean);
 			
 			return getAuthByEmpNo;
 		}

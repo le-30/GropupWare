@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import employee.model.EmployeeBean;
 import employee.model.EmployeeDao;
+import utility.Paging;
 
 @Controller
 public class EmpListController {
@@ -28,16 +29,27 @@ public class EmpListController {
 		
 		@RequestMapping(value = command, method = RequestMethod.GET)
 		public ModelAndView doAction(@RequestParam(value="keyword",required= false)String keyword,
-									 @RequestParam(value ="whatColumn", required =false)String whatColumn) {
+									 @RequestParam(value ="whatColumn", required =false)String whatColumn,
+									 @RequestParam(value="pageNumber",required = false) String pageNumber,
+									 HttpServletRequest request) {
 			ModelAndView mav = new ModelAndView();
-			Map<String,String> map = new HashMap<String,String>();
-			map.put("whatColumn",whatColumn);
-			map.put("keyword", "%"+keyword+"%");
-			List<EmployeeBean> lists = empdao.getAllEmployee(map);
-			
-			mav.addObject("lists",lists);
-			mav.setViewName(gotoPage);
-			
-			return mav;
+
+		        Map<String, String> map = new HashMap<String,String>();
+		        map.put("whatColumn", whatColumn);
+		        map.put("keyword", "%" + keyword + "%");
+
+		        int totalCount = empdao.getTotalCount(map);
+		        String url = request.getContextPath() + command;
+		        Paging pageInfo = new Paging(pageNumber,"3",totalCount,url,whatColumn,keyword);
+		        List<EmployeeBean> lists = empdao.getAllEmployee(pageInfo, map);
+
+		        mav.addObject("lists", lists);
+		        mav.addObject("pageInfo", pageInfo);
+		        mav.addObject("totalCount", totalCount);
+		        mav.setViewName(gotoPage);
+
+		    
+
+		    return mav;
 		}
 }

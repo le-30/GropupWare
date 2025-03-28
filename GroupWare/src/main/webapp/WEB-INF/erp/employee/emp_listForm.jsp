@@ -10,33 +10,11 @@
     <option value="emp_nm">사원이름</option>
   </select>
   <input type="text" name="keyword">
-  <button type="submit">검색</button>
+  <input type="button" value="검색" id="searchBtn">
 </form>
 
 
-<script>
- $(document).ready(function () {
-  $('#empSearchForm').on('submit', function (e) {
-    e.preventDefault();
-
-    const searchData = $(this).serialize();
-
-    $.ajax({
-      url: 'lsh_list.erp', 
-      method: 'GET',
-      data: searchData,
-      success: function (html) {
-        $('.main-content').html(html); 
-      },
-      error: function () {
-        alert('검색 실패');
-      }
-    });
-  });
-});
-
-
-</script>
+<div id="empListContainer">
 <table border="1">
   
  	<thead>
@@ -58,11 +36,11 @@
       <tr>
         <td>${emp.emp_no}</td>
         <td>${emp.emp_nm}</td>
-        <td>${emp.emp_status}</td>
+        <td>${emp.emp_status_nm}</td>
         <td>${emp.dept_nm}</td>
         <td>${emp.position_nm}</td>
         <td><fmt:formatDate value="${emp.hire_date}" pattern="yyyy-MM-dd"/></td>  
-        <td>${emp.gender}</td>
+        <td>${emp.gender_nm}</td>
         <td><fmt:formatDate value="${emp.birth}" pattern="yyyy-MM-dd"/></td>
         <td>${emp.email}</td>
       </tr>
@@ -71,3 +49,8 @@
  
  
 </table>
+<br><br>
+<div id="paging">
+${pageInfo.pagingHtml}
+</div>
+</div>

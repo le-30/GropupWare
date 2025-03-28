@@ -18,7 +18,8 @@
 	</select>
 	
 	<select id="getAuthByEmpNo" resultType="admin.model.EmployeeAuthBean">
-		select * from employee_auth where emp_no = #{emp_no}
+		select * from employee_auth 
+		where emp_no = #{emp_no} and auth_cd = #{auth_cd}
 	</select>
 	
 	<insert id="insertEmployeeAuth">

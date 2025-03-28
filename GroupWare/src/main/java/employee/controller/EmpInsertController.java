@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import employee.model.EmployeeBean;
 import employee.model.EmployeeDao;
+import utility.AutoAuthority;
 
 @Controller
 public class EmpInsertController {
@@ -22,6 +23,9 @@ public class EmpInsertController {
 	
 	@Autowired
 	EmployeeDao empdao;
+	
+	@Autowired
+	AutoAuthority authority;
 	
 	@RequestMapping(value=command, method=RequestMethod.GET)
 	public String doAction() {
@@ -36,11 +40,13 @@ public class EmpInsertController {
 		ModelAndView mav = new ModelAndView();
 		if(result.hasErrors()) {
 			
+			mav.addObject("empBean", empBean);
 			mav.setViewName(getPage);
 			return mav;
 		}
 		
 		int cnt = empdao.insertEmployee(empBean);
+		authority.defaultAuthor(empBean);
 		mav.setViewName(gotoPage);
 		
 		return mav;

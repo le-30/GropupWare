@@ -52,7 +52,7 @@ public class AuthManageController {
 		
 			if(empNo != null) {//체크박스 하나라도 체크했을
 				for(String emp_no : empNo) {
-					String alreadyAuth = empAuthdao.getAuthByEmpNo(emp_no);// 선택한 사원번호가 이미 권한 테이블안에 등록돼 있는지 확인하는 
+					String alreadyAuth = empAuthdao.getAuthByEmpNo(emp_no,auth_cd);// 선택한 사원번호가 이미 권한 테이블안에 등록돼 있는지 확인하는 
 					if(alreadyAuth == null) {
 						int cnt1 = empAuthdao.insertEmployeeAuth(emp_no,auth_cd);
 					}else {

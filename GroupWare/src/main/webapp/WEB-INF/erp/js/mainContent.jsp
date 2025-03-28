@@ -7,6 +7,7 @@
 	    emp: {
 	      button: "사원 등록",
 	      modal: "emp_insert",
+	     container:"empListContainer",
 	      tabs: [
 	        { label: "사원 목록", target: "emp" }
 	      ]
@@ -45,8 +46,10 @@
 
 
 		window.currentModal = '';
+		window.currentPage ='';
 
 		function loadContent(page) {
+			currentPage = page;
 		  	$.ajax({
 		    	url: 'router.erp',
 		   		type: 'GET',
@@ -68,6 +71,7 @@
 		    }
 		  });
 		}
+		
 
 		
 		function openModal(page) {
@@ -89,5 +93,35 @@
 			    }
 			  });
 			}
+		
+		/* function loadMessageDetail(msg_no) { // YMH detail
+	          $.ajax({
+	              url: 'messageDetail.erp',  // 서버에서 메세지 상세 정보를 처리할 URL
+	              type: 'GET',
+	              data: { msg_no: msg_no },  // 메세지 ID를 서버로 전달
+	              success: function(html) {
+	                  $('.main-content').html(html);  // 가져온 HTML을 main-content에 삽입
+	              },
+	              error: function() {
+	                  alert('메세지 로딩 중 오류가 발생했습니다.');
+	              }
+	          });
+	      } // loadMessageDetail
+	      
+	      function MessageReply(msg_no) {
+	         currentModal = "mail_reply";
+	         $.ajax({
+	              url: 'ymh_messageReply.erp',  // 서버에서 메세지 상세 정보를 처리할 URL
+	              type: 'GET',
+	              data: { msg_no: msg_no },  // 메세지 ID를 서버로 전달
+	              success: function(html) {
+	                 $('#modalContent').html(html);
+	               $('#customModal').show();
+	              },
+	              error: function() {
+	                  alert("모달 로딩 실패");
+	              }
+	          });
+	      } // MessageReply */
 
 </script>

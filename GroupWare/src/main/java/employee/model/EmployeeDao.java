@@ -3,9 +3,12 @@ package employee.model;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import utility.Paging;
 
 @Component("EmployeeDao")
 public class EmployeeDao {
@@ -15,9 +18,10 @@ public class EmployeeDao {
 
 	private final String namespace="employee.model.Employee";
 	
-	public List<EmployeeBean> getAllEmployee(Map<String,String> map) {
+	public List<EmployeeBean> getAllEmployee(Paging pageInfo,Map<String,String> map) {
 		
-		List<EmployeeBean> lists = sqlSessionTemplate.selectList(namespace+".getAllEmployee",map);
+		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(),pageInfo.getLimit());
+		List<EmployeeBean> lists = sqlSessionTemplate.selectList(namespace+".getAllEmployee",map,rowBounds);
 		
 		return lists;
 	}
@@ -45,6 +49,13 @@ public class EmployeeDao {
 		List<EmployeeBean> empList = sqlSessionTemplate.selectList(namespace+".getAllEmployeeAuth");
 		
 		return empList;
+	}
+
+	public int getTotalCount(Map<String, String> map) {
+		
+		int cnt = sqlSessionTemplate.selectOne(namespace+".getTotalCount",map);
+		
+		return cnt;
 	}
 
 	

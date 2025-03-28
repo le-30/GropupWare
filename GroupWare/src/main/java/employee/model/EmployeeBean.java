@@ -28,7 +28,24 @@ public class EmployeeBean {
 	
 	private String dept_nm; 
     private String position_nm;
+    private String gender_nm;
+    private String emp_status_nm;
     private String currentAuth;
+    
+    
+    public String getGender_nm() {
+		return gender_nm;
+	}
+	public void setGender_nm(String gender_nm) {
+		this.gender_nm = gender_nm;
+	}
+	public String getEmp_status_nm() {
+		return emp_status_nm;
+	}
+	public void setEmp_status_nm(String emp_status_nm) {
+		this.emp_status_nm = emp_status_nm;
+	}
+   
 	
 	
 	
