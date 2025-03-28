@@ -72,6 +72,7 @@ window.tabSets = window.tabSets || {
 				 });
 				 
 				 bindTabEvents();
+				//alert(tabs[0].target);
 				 loadContent(tabs[0].target);
 			 }else{
 				 //탭세트 없으면 바로 로딩

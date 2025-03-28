@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!-- 본문,헤더버튼 관리 페이지 -->
 <script>
 
@@ -24,15 +24,29 @@
 	      tabs: [
 	        { label: "공통코드 관리", target: "cmmCode" }
 	      ]
+	    },
+	    received: {
+	      button: "메일 보내기",
+	      modal: "mail_insert",
+	      tabs: [
+	        { label: "받은 쪽지", target: "received" }
+	      ]
+	    },
+	    send: {
+	      button: "메일 보내기",
+	      modal: "mail_insert",
+	      tabs: [
+	        { label: "보낸 쪽지", target: "send" }
+	      ]
 	    }
-	   
 	   };
 		
 
 		window.modalPages = window.modalPages || {
 				  emp_insert: 'lsh_insert.erp',
 				  dept_insert: 'dept_insert.erp',
-				  cmmCode_insert: 'cmmCode_insert.erp'
+				  cmmCode_insert: 'cmmCode_insert.erp',
+				  mail_insert: 'ymh_messageinsert.erp',
 				};
 
 
@@ -50,11 +64,11 @@
 		           if (config) {
 		           $('#headerBtn').text(config.button);
 		           currentModal = config.modal;
-		         } else {
-		           $('#headerBtn').text('');
-		           currentModal = '';
-		         }
-		        },
+		        } else {
+					$('#headerBtn').text('');
+					currentModal = '';
+				}
+			},
 		    error: function() {
 		      alert('본문을 불러오는 중 오류가 발생했습니다.');
 		    }
@@ -81,5 +95,67 @@
 			    }
 			  });
 			}
+		
+		function loadMessageDetail(msg_no) { // YMH detail
+		    $.ajax({
+		        url: 'messageDetail.erp',  // 서버에서 메세지 상세 정보를 처리할 URL
+		        type: 'GET',
+		        data: { msg_no: msg_no },  // 메세지 ID를 서버로 전달
+		        success: function(html) {
+		            $('.main-content').html(html);  // 가져온 HTML을 main-content에 삽입
+		        },
+		        error: function() {
+		            alert('메세지 로딩 중 오류가 발생했습니다.');
+		        }
+		    });
+		} // loadMessageDetail
+		
+		function MessageReply(msg_no) {
+			currentModal = "mail_reply";
+			$.ajax({
+		        url: 'ymh_messageReply.erp',  // 서버에서 메세지 상세 정보를 처리할 URL
+		        type: 'GET',
+		        data: { msg_no: msg_no },  // 메세지 ID를 서버로 전달
+		        success: function(html) {
+		        	$('#modalContent').html(html);
+					$('#customModal').show();
+		        },
+		        error: function() {
+		            alert("모달 로딩 실패");
+		        }
+		    });
+		} // MessageReply
+		
+		function MessagePass(msg_no) {
+			currentModal = "mail_pass";
+			$.ajax({
+		        url: 'ymh_messagePass.erp',  // 서버에서 메세지 상세 정보를 처리할 URL
+		        type: 'GET',
+		        data: { msg_no: msg_no },  // 메세지 ID를 서버로 전달
+		        success: function(html) {
+		        	$('#modalContent').html(html);
+					$('#customModal').show();
+		        },
+		        error: function() {
+		            alert("모달 로딩 실패");
+		        }
+		    });
+		} // MessagePass
+		
+		
+		function MessageDelete(msg_no) {
+			$.ajax({
+		        url: 'ymh_messageDelete.erp',  // 서버에서 메세지 상세 정보를 처리할 URL
+		        type: 'GET',
+		        data: { msg_no: msg_no },  // 메세지 ID를 서버로 전달
+		        success: function(html) {
+		        	$('.main-content').html(html);
+		        },
+		        error: function() {
+		            alert("삭제 중 오류가 발생했습니다.");
+		        }
+		    });
+			
+		} // MessageDelete
 
 </script>

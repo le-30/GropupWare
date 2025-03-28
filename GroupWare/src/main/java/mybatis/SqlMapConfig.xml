@@ -6,10 +6,12 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="MyEmployee" type="employee.model.EmployeeBean"/>
+		<typeAlias alias="MyMessage" type="message.model.MessageBean"/>
 	</typeAliases>
 	<mappers>
 			<mapper resource="mybatis/employee.xml"/>
 			<mapper resource="mybatis/admin.xml"/>
+			<mapper resource="mybatis/message.xml"/>
 	</mappers>
 </configuration> 
 

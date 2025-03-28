@@ -19,6 +19,10 @@ public class RouterController {
 			return "redirect:/dept_list.erp";
 		}else if("cmmCode".equals(page)){
 			return "redirect:/cmm_list.erp";
+		}else if("received".equals(page)) {
+			return "redirect:/ymh_MessageReceive.erp";
+		}else if("send".equals(page)) {
+			return "redirect:/ymh_MessageSend.erp";
 		}
 		else {
 		    return gotoPage;

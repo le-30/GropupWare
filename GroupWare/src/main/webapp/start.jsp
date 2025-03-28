@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 
 <%
-response.sendRedirect("lsh_login.erp");
+	response.sendRedirect("lsh_login.erp");
 %>  
